@@ -60,17 +60,28 @@ namespace Make_Believe
 
         public static string InventSyllable()
         {
-            return RandomInArray(Vowels) + RandomInArray(Consonants);
+            int syllableType = r.Next(1,5);
+
+            if (syllableType == 1)
+                return RandomInArray(Vowels);
+            else if (syllableType == 2)
+                return RandomInArray(StartConsonants) + RandomInArray(Vowels);
+            else if (syllableType == 3)
+                return RandomInArray(Vowels) + RandomInArray(EndConsonants);
+            else if (syllableType == 4)
+                return RandomInArray(StartConsonants) + RandomInArray(Vowels) + RandomInArray(EndConsonants);
+            else
+                throw new Exception("Something went wrong.");
         }
 
         public static string RandomInArray(string[] search)
         {
-
             return search[r.Next(0, search.Length)];
         }
 
-        public static string[] Vowels = new string[] { "a", "e", "i", "o", "u" };
-        public static string[] Consonants = new string[] { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "qu", "r", "s", "t", "v", "w", "x", "y", "z" };
+        public static string[] Vowels = new string[] { "a", "e", "i", "o", "u", "ee", "ou" };
+        public static string[] StartConsonants = new string[] { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "qu", "r", "s", "t", "v", "w", "y", "z" };
+        public static string[] EndConsonants = new string[] { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w", "x", "y", "z" };
         public static string CurrentInventedWord = "";
         public static int Syllables = 0;
     }
