@@ -35,11 +35,16 @@ namespace Make_Believe
 
             for (; ; )
             {
-                Subject(true);
-                Predicate();
+                IndependentClause();
                 Console.Write(".");
                 Console.ReadLine();
             }
+        }
+
+        private static void IndependentClause()
+        {
+            Subject(true);
+            Predicate();
         }
 
         private static void Subject(bool start)
@@ -83,6 +88,10 @@ namespace Make_Believe
                 case 2:
                     Console.Write($" {RandomIn(PlaceVerbs)}{RandomIn(PlaceNouns)}");
                     break;
+
+                default: // Backup
+                    Predicate();
+                    break;
             }
         }
 
@@ -94,7 +103,7 @@ namespace Make_Believe
         public static string[] Names = new string[] { "Ana", "Andrew", "John", "Amanda" };
         public static string[] Objects = new string[] { "chicken", "cow", "sheep", "pig", "error", "person", "animal", "party", "star" };
 
-        public static string[] PlaceVerbs = new string[] { "walks ", "jumps " };
+        public static string[] PlaceVerbs = new string[] { "walks ", "jumps ", "hops ", "skips ", "ambles " };
         public static string[] PlaceNouns = new string[] { "to the park", "on the sidewalk" };
 
         public static string[] AnUsage = new string[] { "a", "e", "h", "i", "o", "u" };
