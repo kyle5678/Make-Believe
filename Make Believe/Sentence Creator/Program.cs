@@ -35,15 +35,26 @@ namespace Make_Believe
 
             for (; ; )
             {
-                IndependentClause();
-                Console.Write(".");
+                switch (r.Next(1, 3))
+                {
+                    case 1:
+                        IndependentClause(true);
+                        Console.Write(".");
+                        break;
+                    case 2:
+                        IndependentClause(true);
+                        Console.Write(", and ");
+                        IndependentClause(false);
+                        Console.Write(".");
+                        break;
+                }
                 Console.ReadLine();
             }
         }
 
-        private static void IndependentClause()
+        private static void IndependentClause(bool start)
         {
-            Subject(true);
+            Subject(start);
             Predicate();
         }
 
