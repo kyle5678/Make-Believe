@@ -60,31 +60,43 @@ namespace Make_Believe
 
         private static void Subject(bool start)
         {
-            if (r.Next(1, 3) == 1)
-                Console.Write($"{RandomIn(Names)}");
-            else
+            switch (r.Next(1, 4))
             {
-                string Object = RandomIn(Objects);
-                if (r.Next(1, 3) == 1)
-                {
-                    if (start)
-                        Console.Write($"The {Object}");
+                case 1:
+                    Console.Write($"{RandomIn(Names)}");
+                    break;
+                case 2:
+                    string Object = RandomIn(Objects);
+                    if (r.Next(1, 3) == 1)
+                    {
+                        if (start)
+                            Console.Write($"The {Object}");
+                        else
+                            Console.Write($"the {Object}");
+                    }
                     else
-                        Console.Write($"the {Object}");
-                }
-                else
-                {
-                    if (start)
-                        Console.Write("A");
-                    else
-                        Console.Write("a");
+                    {
+                        if (start)
+                            Console.Write("A");
+                        else
+                            Console.Write("a");
 
-                    if (Array.Exists(AnUsage, e => e == Object[0].ToString()))
-                        Console.Write("n ");
-                    else
-                        Console.Write(" ");
-                    Console.Write($"{Object}");
-                }
+                        if (Array.Exists(AnUsage, e => e == Object[0].ToString()))
+                            Console.Write("n ");
+                        else
+                            Console.Write(" ");
+                        Console.Write($"{Object}");
+                    }
+                    break;
+                case 3:
+                    string pronoun = RandomIn(Pronouns);
+                    if (start)
+                        pronoun = pronoun[0].ToString().ToUpper() + pronoun.Substring(1);
+                    Console.Write(pronoun);
+                    break;
+                default:
+                    Subject(start);
+                    break;
             }
         }
 
@@ -113,6 +125,7 @@ namespace Make_Believe
 
         public static string[] Names = new string[] { "Ana", "Andrew", "John", "Amanda" };
         public static string[] Objects = new string[] { "chicken", "cow", "sheep", "pig", "error", "person", "animal", "party", "star" };
+        public static string[] Pronouns = new string[] { "she", "he", "it" };
 
         public static string[] PlaceVerbs = new string[] { "walks ", "jumps ", "hops ", "skips ", "ambles " };
         public static string[] PlaceNouns = new string[] { "to the park", "on the sidewalk" };
